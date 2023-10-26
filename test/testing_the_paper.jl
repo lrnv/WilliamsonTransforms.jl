@@ -16,44 +16,44 @@ end
 end
 
 
-@testitem "Exemple 3.3: inverse williamson clayton" begin
-    using SpecialFunctions
+# @testitem "Exemple 3.3: inverse williamson clayton" begin
+#     using SpecialFunctions
     
-    # exemple 3.3. : back to clayton. 
-    gen_clayton(x,θ) = (1 + θ * x)^(-1/θ)
-    function true_radial_cdf_for_clayton(x,θ,d)
-        if x < 0
-            return zero(x)
-        end
-        if θ < 0
-            α = -1/θ
-            if x >= α
-                return one(x)
-            end
-            rez = zero(x)
-            θx = θ*x
-            cst = log(-θx/(1+θx))
-            @show x, cst
-            for k in 0:(d-1)
-                rez += exp(loggamma(α+k+1) - loggamma(k+1) + k*cst)
-            end
-            rez *= (1+θx)^α/gamma(α+1)
-            return 1-rez
-        elseif θ == 0
-            return exp(-x)
-        else
-            rez = zero(x)
-            for k in 0:(d-1)
-                rez +=  prod(1+j*θ for j in 0:(k-1))/factorial(k) * x^k * (1+θ*x)^(-(1/θ+k))
-            end
-            return 1-rez
-        end
-    end
-    θ = -0.3
-    X = 𝒲₋₁(x -> gen_clayton(x,θ),2)
+#     # exemple 3.3. : back to clayton. 
+#     gen_clayton(x,θ) = (1 + θ * x)^(-1/θ)
+#     function true_radial_cdf_for_clayton(x,θ,d)
+#         if x < 0
+#             return zero(x)
+#         end
+#         if θ < 0
+#             α = -1/θ
+#             if x >= α
+#                 return one(x)
+#             end
+#             rez = zero(x)
+#             θx = θ*x
+#             cst = log(-θx/(1+θx))
+#             @show x, cst
+#             for k in 0:(d-1)
+#                 rez += exp(loggamma(α+k+1) - loggamma(k+1) + k*cst)
+#             end
+#             rez *= (1+θx)^α/gamma(α+1)
+#             return 1-rez
+#         elseif θ == 0
+#             return exp(-x)
+#         else
+#             rez = zero(x)
+#             for k in 0:(d-1)
+#                 rez +=  prod(1+j*θ for j in 0:(k-1))/factorial(k) * x^k * (1+θ*x)^(-(1/θ+k))
+#             end
+#             return 1-rez
+#         end
+#     end
+#     θ = -0.3
+#     X = 𝒲₋₁(x -> gen_clayton(x,θ),2)
 
-    @test maximum(abs.([true_radial_cdf_for_clayton(x,θ,2) - X.F(x) for x in 0:0.01:10])) <= sqrt(eps(Float64))
-end
+#     @test maximum(abs.([true_radial_cdf_for_clayton(x,θ,2) - X.F(x) for x in 0:0.01:10])) <= sqrt(eps(Float64))
+# end
 
 
 

@@ -69,30 +69,31 @@ The cumulative distribution function of this random variable is given by:
 𝒲₋₁(X,d)(x) = 1 - \\frac{(-x)^{d-1} \\phi_+^{(d-1)}(x)}{k!} - \\sum_{k=0}^{d-2} \\frac{(-x)^k \\phi^{(k)}(x)}{k!}
 ```
 """
-struct 𝒲₋₁{Tϕ,TF} <: Distributions.ContinuousUnivariateDistribution
+struct 𝒲₋₁{Tϕ,Tϕt} <: Distributions.ContinuousUnivariateDistribution
     ϕ::Tϕ
     d::Int64
-    F::TF
     function 𝒲₋₁(ϕ,d)
-        # This gives the CDF of the random variable that is the inverse williamson d-transform of ϕ. 
-        # The issue is that it might take a while to compute. 
-        function F(x)
-            rez = one(x)
-            t_taylor = TaylorSeries.Taylor1(eltype(x),d)
-            ϕ_taylor = ϕ(x + t_taylor).coeffs
-            ϕ_taylor[end] = max(ϕ_taylor[end], 0)
-            for k in 1:(d-1)
-                rez -= (-1)^k * x^k * ϕ_taylor[k+1]
-            end
-            return rez
-        end
-        return new{typeof(ϕ),typeof(F)}(ϕ,d,F)
+        return new{typeof(ϕ),typeof(ϕ_taylor)}(ϕ,d,ϕ_taylor)
     end
+end
+function Distributions.cdf(d::𝒲₋₁, x::Real)
+    rez = one(x)
+    t_taylor = TaylorSeries.Taylor1(Float64,d.d)
+    ϕ_taylor = d.ϕ(x + t_taylor).coeffs
+    ϕ_taylor[end] = max(ϕ_taylor[end], 0)
+    for k in 1:(d.d-1)
+        rez -= (-1)^k * x^k * ϕ_taylor[k+1]
+    end
+    return rez
+end
+function Distributions.logpdf(d::𝒲₋₁, x::Real)
+    t_taylor = TaylorSeries.Taylor1(Float64,d.d+1)
+    ϕ_d = d.ϕ(x + t_taylor).coeffs[end]
+    return (d.d-1)*log(x) + log(ϕ_d) - sum(log.(1:(d.d-1)))
+
 end
 function Distributions.rand(rng::Distributions.AbstractRNG, d::𝒲₋₁)
     u = rand(rng)
-    Roots.find_zero(x -> (d.F(x) - u), (0, Inf))
+    Roots.find_zero(x -> (Distributions.cdf(d,x) - u), (0, Inf))
 end
-
-
 end
