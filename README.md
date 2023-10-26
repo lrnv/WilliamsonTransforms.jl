@@ -6,11 +6,39 @@
 [![Coverage](https://codecov.io/gh/lrnv/WilliamsonTransform.jl/branch/master/graph/badge.svg)](https://codecov.io/gh/lrnv/WilliamsonTransform.jl)
 
 
-The goal of this package is to provide the williamson d transform and its inverse, as defined in 
+This rather simple Julia package of code provides an implementation of the Williamson d-transform and of its inverse. 
 
- WILLIAMSON, R. E. (1956). Multiply monotone functions and their Laplace transforms. Duke Math. J. 23 189–207. MR0077581
+Do not hesitate to open an issue and talk if you are interested.
 
-and used in 
 
-McNeil, Alexander J., and Johanna Nešlehová. "Multivariate Archimedean copulas, d-monotone functions and ℓ 1-norm symmetric distributions." (2009): 3059-3097.
+See the following references for the definitions and motivations for this transformation: 
 
+```
+@book{williamson1955multiply,
+  title={On multiply monotone functions and their laplace transforms},
+  author={Williamson, Richard Edmund},
+  year={1955},
+  publisher={Mathematics Division, Office of Scientific Research, US Air Force}
+}
+@article{mcneil2009multivariate,
+  title={Multivariate Archimedean copulas, d-monotone functions and ℓ 1-norm symmetric distributions},
+  author={McNeil, Alexander J and Ne{\v{s}}lehov{\'a}, Johanna},
+  year={2009}
+}
+@article{mcneil2010archimedean,
+  title={From archimedean to liouville copulas},
+  author={McNeil, Alexander J and Ne{\v{s}}lehov{\'a}, Johanna},
+  journal={Journal of Multivariate Analysis},
+  volume={101},
+  number={8},
+  pages={1772--1790},
+  year={2010},
+  publisher={Elsevier}
+}
+@book{durante2015principles,
+  title={Principles of copula theory},
+  author={Durante, Fabrizio and Sempi, Carlo},
+  year={2015},
+  publisher={CRC press}
+}
+```
