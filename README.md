@@ -1,3 +1,5 @@
+<!-- LTeX: language=en -->
+
 # WilliamsonTransforms
 
 [![Stable](https://img.shields.io/badge/docs-stable-blue.svg)](https://lrnv.github.io/WilliamsonTransforms.jl/stable/)
@@ -10,8 +12,7 @@ This rather simple Julia package of code provides an implementation of the Willi
 
 Do not hesitate to open an issue and talk if you are interested.
 
-
-See the following references for the definitions and motivations for this transformation: 
+See the following references and the documentation of the package for the definition and motivations of this (rather unknown) transformation:
 
 ```
 @book{williamson1955multiply,
