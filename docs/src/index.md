@@ -1,14 +1,14 @@
 ```@meta
-CurrentModule = WilliamsonTransform
+CurrentModule = WilliamsonTransforms
 ```
 
-# WilliamsonTransform
+# WilliamsonTransforms
 
-Documentation for [WilliamsonTransform](https://github.com/lrnv/WilliamsonTransform.jl).
+Documentation for [WilliamsonTransforms](https://github.com/lrnv/WilliamsonTransforms.jl).
 
 ```@index
 ```
 
 ```@autodocs
-Modules = [WilliamsonTransform]
+Modules = [WilliamsonTransforms]
 ```

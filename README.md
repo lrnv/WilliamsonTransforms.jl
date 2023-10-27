@@ -1,9 +1,9 @@
-# WilliamsonTransform
+# WilliamsonTransforms
 
-[![Stable](https://img.shields.io/badge/docs-stable-blue.svg)](https://lrnv.github.io/WilliamsonTransform.jl/stable/)
-[![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://lrnv.github.io/WilliamsonTransform.jl/dev/)
-[![Build Status](https://github.com/lrnv/WilliamsonTransform.jl/actions/workflows/CI.yml/badge.svg?branch=master)](https://github.com/lrnv/WilliamsonTransform.jl/actions/workflows/CI.yml?query=branch%3Amaster)
-[![Coverage](https://codecov.io/gh/lrnv/WilliamsonTransform.jl/branch/master/graph/badge.svg)](https://codecov.io/gh/lrnv/WilliamsonTransform.jl)
+[![Stable](https://img.shields.io/badge/docs-stable-blue.svg)](https://lrnv.github.io/WilliamsonTransforms.jl/stable/)
+[![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://lrnv.github.io/WilliamsonTransforms.jl/dev/)
+[![Build Status](https://github.com/lrnv/WilliamsonTransforms.jl/actions/workflows/CI.yml/badge.svg?branch=master)](https://github.com/lrnv/WilliamsonTransforms.jl/actions/workflows/CI.yml?query=branch%3Amaster)
+[![Coverage](https://codecov.io/gh/lrnv/WilliamsonTransforms.jl/branch/master/graph/badge.svg)](https://codecov.io/gh/lrnv/WilliamsonTransforms.jl)
 
 
 This rather simple Julia package of code provides an implementation of the Williamson d-transform and of its inverse. 

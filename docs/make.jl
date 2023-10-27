@@ -1,13 +1,13 @@
-using WilliamsonTransform
+using WilliamsonTransforms
 using Documenter
 
-DocMeta.setdocmeta!(WilliamsonTransform, :DocTestSetup, :(using WilliamsonTransform); recursive=true)
+DocMeta.setdocmeta!(WilliamsonTransforms, :DocTestSetup, :(using WilliamsonTransforms); recursive=true)
 
 makedocs(;
-    modules=[WilliamsonTransform],
+    modules=[WilliamsonTransforms],
     authors="Oskar Laverny <oskar.laverny@gmail.com> and contributors",
-    repo="https://github.com/lrnv/WilliamsonTransform.jl/blob/{commit}{path}#{line}",
-    sitename="WilliamsonTransform.jl",
+    repo="https://github.com/lrnv/WilliamsonTransforms.jl/blob/{commit}{path}#{line}",
+    sitename="WilliamsonTransforms.jl",
     format=Documenter.HTML(;
         prettyurls=get(ENV, "CI", "false") == "true",
         canonical="https://lrnv.github.io/WilliamsonsTranform.jl",
@@ -20,6 +20,6 @@ makedocs(;
 )
 
 deploydocs(;
-    repo="github.com/lrnv/WilliamsonTransform.jl",
+    repo="github.com/lrnv/WilliamsonTransforms.jl",
     devbranch="master",
 )

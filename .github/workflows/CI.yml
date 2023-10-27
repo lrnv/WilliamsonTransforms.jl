@@ -63,6 +63,6 @@ jobs:
       - run: |
           julia --project=docs -e '
             using Documenter: DocMeta, doctest
-            using WilliamsonTransform
-            DocMeta.setdocmeta!(WilliamsonTransform, :DocTestSetup, :(using WilliamsonTransform); recursive=true)
-            doctest(WilliamsonTransform)'
+            using WilliamsonTransforms
+            DocMeta.setdocmeta!(WilliamsonTransforms, :DocTestSetup, :(using WilliamsonTransforms); recursive=true)
+            doctest(WilliamsonTransforms)'

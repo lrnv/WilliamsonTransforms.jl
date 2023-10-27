@@ -1,4 +1,4 @@
-module WilliamsonTransform
+module WilliamsonTransforms
 
 import Distributions
 import TaylorSeries
@@ -12,7 +12,7 @@ export 𝒲, 𝒲₋₁
 
 Computes the Williamson d-transform of the random variable X, taken at point x, as described in 
 
-WILLIAMSON, R. E. (1956). Multiply monotone functions and their Laplace transforms. Duke Math. J. 23 189–207. MR0077581
+Williamson, R. E. (1956). Multiply monotone functions and their Laplace transforms. Duke Math. J. 23 189–207. MR0077581
 
 and used in 
 
@@ -50,7 +50,7 @@ end
 
 Computes the inverse Williamson d-transform of the d-monotone archimedean generator ϕ. This inverse is a CDF, and we return it on the form of a random variable `<:Distributions.ContinuousUnivariateDistribution` from `Distributions.jl`. The result can be sampled through `Distributions.rand()`. See 
 
-WILLIAMSON, R. E. (1956). Multiply monotone functions and their Laplace transforms. Duke Math. J. 23 189–207. MR0077581
+Williamson, R. E. (1956). Multiply monotone functions and their Laplace transforms. Duke Math. J. 23 189–207. MR0077581
 
 and moreover
 
