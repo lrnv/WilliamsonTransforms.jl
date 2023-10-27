@@ -10,6 +10,8 @@ TaylorSeries = "6aa5eb33-94cf-58f4-a9d0-e4b2c4fc25ea"
 
 [compat]
 TaylorSeries = "0.15"
+Distributions = "0.25"
+Roots = "2"
 julia = "1"
 
 [extras]
