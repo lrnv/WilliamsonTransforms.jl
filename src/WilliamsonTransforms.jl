@@ -45,6 +45,10 @@ function (ϕ::𝒲)(x)
     end
 end
 
+function taylor(f, x, d, T)
+    return f(x + TaylorSeries.Taylor1(T,d)).coeffs
+end
+
 """
     𝒲₋₁(ϕ,d)
 
@@ -64,9 +68,6 @@ The cumulative distribution function of this random variable is given by:
 𝒲₋₁(X,d)(x) = 1 - \\frac{(-x)^{d-1} \\phi_+^{(d-1)}(x)}{k!} - \\sum_{k=0}^{d-2} \\frac{(-x)^k \\phi^{(k)}(x)}{k!}
 ```
 """
-function taylor(f, x, d, T)
-    return f(x + TaylorSeries.Taylor1(T,d)).coeffs
-end
 struct 𝒲₋₁{Tϕ} <: Distributions.ContinuousUnivariateDistribution
     ϕ::Tϕ
     d::Int64
