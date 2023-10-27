@@ -25,7 +25,7 @@ For a univariate non-negative random variable ``X``, with cumulative distributio
 ```
 
 This function has several properties: 
-    - ``\\phi(0) = 1`` and ``\\phi(Inf) = 0``
+    - We have that ``\\phi(0) = 1`` and ``\\phi(Inf) = 0``
     - ``\\phi`` is ``d-2`` times derivable, and the signs of its derivatives alternates : ``\\forall k \\in 0,...,d-2, (-1)^k \\phi^{(k)} \\ge 0``.
     - ``\\phi^{(d-2)}`` is convex.
 

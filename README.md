@@ -1,6 +1,4 @@
-<!-- LTeX: language=en -->
-
-# WilliamsonTransforms
+# WilliamsonTransforms.jl
 
 [![Stable](https://img.shields.io/badge/docs-stable-blue.svg)](https://lrnv.github.io/WilliamsonTransforms.jl/stable/)
 [![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://lrnv.github.io/WilliamsonTransforms.jl/dev/)
