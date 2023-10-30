@@ -5,6 +5,8 @@
     ϕ(x, d) = max((1-x)^(d-1),zero(x))
     Xhat = 𝒲₋₁(x -> ϕ(x,d),d)
     ϕhat = 𝒲(X,d)
+
+    rand(Xhat,10)
     
     @test maximum(abs.([cdf(X,x) - cdf(Xhat,x) for x in 0:0.01:10*d])) <= sqrt(eps(Float64))
     @test maximum(abs.([ϕ(x, d) - ϕhat(x) for x in 0:0.01:10])) <= sqrt(eps(Float64))
@@ -17,6 +19,8 @@ end
         ϕ(x) = exp(-x)
         Xhat = 𝒲₋₁(ϕ,d)
         ϕhat = 𝒲(X,d)
+
+        rand(Xhat,10)
     
         @test maximum(abs.([cdf(X,x) - cdf(Xhat,x) for x in 0:0.01:3*d])) <= sqrt(eps(Float64))
         @test maximum(abs.([ϕ(x) - ϕhat(x) for x in 0:0.01:10])) <= sqrt(eps(Float64))
@@ -65,6 +69,7 @@ end
         (2, -1.0)
     )
         Xhat = 𝒲₋₁(x -> ϕ(x,θ),d)
+        rand(Xhat,10)
         @test maximum(abs.([F(x,θ,d) - cdf(Xhat,x) for x in 0:0.01:10])) <= sqrt(eps(Float64))
     end
 

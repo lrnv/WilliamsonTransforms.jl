@@ -101,7 +101,9 @@ function Distributions.cdf(d::𝒲₋₁, x::Real)
     c_ϕ = taylor(d.ϕ, x, d.d, typeof(x))
     c_ϕ[end] = max(c_ϕ[end], 0)
     for k in 0:(d.d-1)
-        rez += (-1)^k * x^k * c_ϕ[k+1]
+        if c_ϕ[k+1] != 0 # We need c_ϕ = 0 to dominate x = Inf
+            rez += (-1)^k * x^k * c_ϕ[k+1]
+        end
     end
     return 1-rez
 end
@@ -112,6 +114,6 @@ function Distributions.logpdf(d::𝒲₋₁, x::Real)
 end
 function Distributions.rand(rng::Distributions.AbstractRNG, d::𝒲₋₁)
     u = rand(rng)
-    Roots.find_zero(x -> (Distributions.cdf(d,x) - u), (0, Inf))
+    Roots.find_zero(x -> (Distributions.cdf(d,x) - u), (0.0, Inf))
 end
 end
