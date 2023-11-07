@@ -105,7 +105,9 @@ function Distributions.cdf(d::𝒲₋₁, x::Real)
             rez += (-1)^k * x^k * c_ϕ[k+1]
         end
     end
-    return 1-rez
+    # simple hack to ensure convergence :
+    return isnan(rez) ? one(x) : 1 - rez
+    # return 1-rez
 end
 function Distributions.logpdf(d::𝒲₋₁, x::Real)
     ϕ_d = taylor(d.ϕ, x, d.d+1, typeof(x))[end]

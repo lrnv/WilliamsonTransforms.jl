@@ -74,3 +74,12 @@ end
     end
 
 end
+
+
+@testitem "AMH theta=-1 test" begin
+    ϕ(t) = 2 / (1+exp(t))
+    d=2
+    X = 𝒲₋₁(ϕ,d)
+    rand(X,100)
+    @test true
+end
