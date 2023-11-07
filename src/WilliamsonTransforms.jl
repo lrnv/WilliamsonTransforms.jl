@@ -90,8 +90,8 @@ struct 𝒲₋₁{Tϕ} <: Distributions.ContinuousUnivariateDistribution
     ϕ::Tϕ
     d::Int64
     function 𝒲₋₁(ϕ,d)
-        @assert ϕ(0) == 1
-        @assert ϕ(Inf) == 0
+        @assert ϕ(0.0) == 1.0
+        @assert ϕ(float(Inf)) == 0.0
         # And assertion about d-monotony... how can this be check ? this is hard. 
         return new{typeof(ϕ)}(ϕ,d)
     end
