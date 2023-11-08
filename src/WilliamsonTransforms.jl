@@ -37,7 +37,7 @@ References:
 """
 struct 𝒲{TX}
     X::TX
-    d::Int64
+    d::Int
     # E::TE
     function 𝒲(X::TX,d) where TX<:Distributions.UnivariateDistribution
         @assert minimum(X) ≥ 0 && maximum(X) ≤ Inf 
@@ -88,7 +88,7 @@ References:
 """
 struct 𝒲₋₁{Tϕ} <: Distributions.ContinuousUnivariateDistribution
     ϕ::Tϕ
-    d::Int64
+    d::Int
     function 𝒲₋₁(ϕ,d)
         @assert ϕ(0.0) == 1.0
         @assert ϕ(float(Inf)) == 0.0
