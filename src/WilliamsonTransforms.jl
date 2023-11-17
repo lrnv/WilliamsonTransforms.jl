@@ -10,6 +10,7 @@ import Distributions
 import TaylorSeries
 import Base.minimum
 import Roots
+import Base: minimum, maximum
 
 export 𝒲, 𝒲₋₁
 
@@ -110,7 +111,7 @@ function Distributions.cdf(d::𝒲₋₁, x::Real)
     # return 1-rez
 end
 function Distributions.logpdf(d::𝒲₋₁, x::Real)
-    ϕ_d = taylor(d.ϕ, x, d.d+1, typeof(x))[end]
+    ϕ_d = max(taylor(d.ϕ, x, d.d+1, typeof(x))[end],0)
     r = (d.d-1)*log(x) - sum(log.(1:(d.d-1)))
     return log(ϕ_d) + r
 end
@@ -118,4 +119,6 @@ function Distributions.rand(rng::Distributions.AbstractRNG, d::𝒲₋₁)
     u = rand(rng)
     Roots.find_zero(x -> (Distributions.cdf(d,x) - u), (0.0, Inf))
 end
+Base.minimum(::𝒲₋₁) = 0.0
+Base.maximum(::𝒲₋₁) = Inf
 end
