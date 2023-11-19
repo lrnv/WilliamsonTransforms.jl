@@ -121,4 +121,12 @@ function Distributions.rand(rng::Distributions.AbstractRNG, d::𝒲₋₁)
 end
 Base.minimum(::𝒲₋₁) = 0.0
 Base.maximum(::𝒲₋₁) = Inf
+end #This end was here before increasing the following function
+
+function Distributions.quantile(d::𝒲₋₁, p::Real)
+    # Validate that p is in the range [0, 1]
+    @assert 0 <= p <= 1
+
+    # Finding the root of the equation F(x) - p = 0 using the root function
+    return Roots.find_zero(x -> (Distributions.cdf(d, x) - p), (0.0, Inf))
 end
