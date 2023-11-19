@@ -83,3 +83,22 @@ end
     rand(X,100)
     @test true
 end
+
+@testitem "Quantile test - IndependantCopula, dimension 10" begin
+    using Distributions
+    for d in 3:20
+        X = Erlang(d)
+        ϕ(x) = exp(-x)
+        Xhat = 𝒲₋₁(ϕ, d)
+
+        # Perform 10 tests of the quantile function
+        for _ in 1:10
+            p = rand()
+            x = quantile(X, p)
+            xhat = quantile(Xhat, p)
+
+            # Verify that the difference between the quantiles is small
+            @test abs(x - xhat) <= sqrt(eps(Float64))
+        end
+    end
+end
