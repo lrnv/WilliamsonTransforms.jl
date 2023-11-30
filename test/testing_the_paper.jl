@@ -114,3 +114,18 @@ end
         @test truth ≈ estimated
     end
 end
+
+
+@testitem "testing one-dimensional williamson transformation" begin
+    using Distributions
+    ϕ(x) = exp(-x)
+    Xhat = 𝒲₋₁(ϕ, 1)
+    @assert all(Distributions.cdf(Xhat,x) == 1 - ϕ(x) for x in -log.(rand(1000)))
+end
+
+
+@testitem "testing fractional-dimensional williamson transformation" begin
+    using Distributions
+    ϕ(x) = exp(-x)
+    @test_throws InexactError 𝒲₋₁(ϕ, 0.7)
+end

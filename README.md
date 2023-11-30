@@ -6,11 +6,11 @@
 [![Coverage](https://codecov.io/gh/lrnv/WilliamsonTransforms.jl/branch/master/graph/badge.svg)](https://codecov.io/gh/lrnv/WilliamsonTransforms.jl)
 
 
-This rather simple Julia package of code provides an implementation of the Williamson d-transform and of its inverse. 
+This rather simple package providing a Julia-native implementation of the Williamson d-transform and of its inverse. See the documentations for the definitions.  
 
 Do not hesitate to open an issue and talk if you are interested.
 
-See the following references and the documentation of the package for the definition and motivations of this (rather unknown) transformation:
+See the following references and the documentation of the package for the definition and motivations of this (rather niche) transformation:
 
 ```
 @book{williamson1955multiply,

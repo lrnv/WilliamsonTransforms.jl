@@ -111,18 +111,14 @@ function Distributions.cdf(d::𝒲₋₁, x)
     # return 1-rez
 end
 Distributions.logpdf(d::𝒲₋₁, x::Real) = log(max(0,taylor(x -> Distributions.cdf(d,x), x, 1, typeof(x))[end]))
-function Distributions.rand(rng::Distributions.AbstractRNG, d::𝒲₋₁)
-    u = rand(rng)
-    Roots.find_zero(x -> (Distributions.cdf(d,x) - u), (0.0, Inf))
-end
+_quantile(d::𝒲₋₁, p) = Roots.find_zero(x -> (Distributions.cdf(d, x) - p), (0.0, Inf))
+Distributions.rand(rng::Distributions.AbstractRNG, d::𝒲₋₁) = _quantile(d,rand(rng))
 Base.minimum(::𝒲₋₁) = 0.0
 Base.maximum(::𝒲₋₁) = Inf
 function Distributions.quantile(d::𝒲₋₁, p::Real)
-    # Validate that p is in the range [0, 1]
+# Validate that p is in the range [0, 1]
     @assert 0 <= p <= 1
-
-    # Finding the root of the equation F(x) - p = 0 using the root function
-    return Roots.find_zero(x -> (Distributions.cdf(d, x) - p), (0.0, Inf))
+    return _quantile(d,p)
 end
 end
 
