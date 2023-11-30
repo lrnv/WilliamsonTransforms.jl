@@ -97,7 +97,7 @@ struct 𝒲₋₁{Tϕ} <: Distributions.ContinuousUnivariateDistribution
         return new{typeof(ϕ)}(ϕ,d)
     end
 end
-function Distributions.cdf(d::𝒲₋₁, x::Real)
+function Distributions.cdf(d::𝒲₋₁, x)
     rez = zero(x)
     c_ϕ = taylor(d.ϕ, x, d.d, typeof(x))
     c_ϕ[end] = max(c_ϕ[end], 0)
@@ -110,11 +110,7 @@ function Distributions.cdf(d::𝒲₋₁, x::Real)
     return isnan(rez) ? one(x) : 1 - rez
     # return 1-rez
 end
-function Distributions.logpdf(d::𝒲₋₁, x::Real)
-    ϕ_d = max(taylor(d.ϕ, x, d.d+1, typeof(x))[end],0)
-    r = (d.d-1)*log(x) - sum(log.(1:(d.d-1)))
-    return log(ϕ_d) + r
-end
+Distributions.logpdf(d::𝒲₋₁, x::Real) = log(max(0,taylor(x -> Distributions.cdf(d,x), x, 1, typeof(x))[end]))
 function Distributions.rand(rng::Distributions.AbstractRNG, d::𝒲₋₁)
     u = rand(rng)
     Roots.find_zero(x -> (Distributions.cdf(d,x) - u), (0.0, Inf))

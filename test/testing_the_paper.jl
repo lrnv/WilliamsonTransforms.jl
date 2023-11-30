@@ -1,4 +1,4 @@
-@testitem "Exemple 2.1 - WCopula, dimension 2" begin
+@testitem "Exemple 2.1 - Minimal Frechet (W) Generator, dimension 2" begin
     using Distributions
     d=2
     X = Dirac(1)
@@ -12,7 +12,7 @@
     @test maximum(abs.([ϕ(x, d) - ϕhat(x) for x in 0:0.01:10])) <= sqrt(eps(Float64))
 end
 
-@testitem "Exemple 3.2 - IndependantCopula, dimension 10" begin
+@testitem "Exemple 3.2 - Independence generator" begin
     using Distributions
     for d in 3:20
         X = Erlang(d)
@@ -27,7 +27,7 @@ end
     end
 end
 
-@testitem "Exemple 3.3: ClaytonCopula" begin
+@testitem "Exemple 3.3: Clayton Generator" begin
     using SpecialFunctions, Distributions
     
     # exemple 3.3. : back to clayton. 
@@ -76,7 +76,7 @@ end
 end
 
 
-@testitem "AMH theta=-1 test" begin
+@testitem "AMH Generator - test theta=-1" begin
     ϕ(t) = 2 / (1+exp(t))
     d=2
     X = 𝒲₋₁(ϕ,d)
@@ -84,7 +84,7 @@ end
     @test true
 end
 
-@testitem "Quantile test - IndependantCopula, dimension 10" begin
+@testitem "Quantile test - Independence Generator" begin
     using Distributions
     for d in 3:20
         X = Erlang(d)
@@ -100,5 +100,17 @@ end
             # Verify that the difference between the quantiles is small
             @test abs(x - xhat) <= sqrt(eps(Float64))
         end
+    end
+end
+
+@testitem "Expectation test - IndependantCopula" begin
+    using Distributions
+    for d in 3:20
+        X = Erlang(d)
+        ϕ(x) = exp(-x)
+        Xhat = 𝒲₋₁(ϕ, d)
+        truth = Distributions.expectation(ϕ, X)
+        estimated = Distributions.expectation(ϕ,Xhat)
+        @test truth ≈ estimated
     end
 end
