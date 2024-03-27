@@ -41,3 +41,21 @@ See the following references and the documentation of the package for the defini
   publisher={CRC press}
 }
 ```
+
+# Citing this work 
+
+If you end up using these routines in a scholarly work, please cite this work using the following bibtex: 
+```
+@article{Laverny2024,
+    author = {Oskar Laverny and Santiago Jimenez}, 
+    title = {Copulas.jl: A fully Distributions.jl-compliant copula package},
+    journal = {Journal of Open Source Software},
+    doi = {10.21105/joss.06189}, 
+    url = {https://doi.org/10.21105/joss.06189}, 
+    year = {2024}, 
+    publisher = {The Open Journal}, 
+    volume = {9}, 
+    number = {94}, 
+    pages = {6189}
+}
+```
