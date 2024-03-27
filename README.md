@@ -12,7 +12,7 @@ Do not hesitate to open an issue and talk if you are interested.
 
 See the following references and the documentation of the package for the definition and motivations of this (rather niche) transformation:
 
-```
+```bibtex
 @book{williamson1955multiply,
   title={On multiply monotone functions and their laplace transforms},
   author={Williamson, Richard Edmund},
@@ -45,7 +45,7 @@ See the following references and the documentation of the package for the defini
 # Citing this work 
 
 If you end up using these routines in a scholarly work, please cite this work using the following bibtex: 
-```
+```BibTeX
 @article{Laverny2024,
     author = {Oskar Laverny and Santiago Jimenez}, 
     title = {Copulas.jl: A fully Distributions.jl-compliant copula package},
