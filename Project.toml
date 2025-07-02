@@ -1,7 +1,7 @@
 name = "WilliamsonTransforms"
 uuid = "48feb556-9bdd-43a2-8e10-96100ec25e22"
 authors = ["Oskar Laverny <oskar.laverny@gmail.com> and contributors"]
-version = "0.1.6"
+version = "0.1.7"
 
 [deps]
 Distributions = "31c24e10-a181-5473-b8eb-7969acd0382f"
