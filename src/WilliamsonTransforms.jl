@@ -57,8 +57,8 @@ function (ϕ::𝒲)(x)
     end
 end
 
-function taylor(f, x, d, T)
-    return f(x + TaylorSeries.Taylor1(T,d)).coeffs
+function taylor(f, x, d)
+    return f(x + TaylorSeries.Taylor1([zero(x), one(x)],d)).coeffs
 end
 
 """
@@ -99,7 +99,7 @@ struct 𝒲₋₁{Tϕ} <: Distributions.ContinuousUnivariateDistribution
 end
 function Distributions.cdf(d::𝒲₋₁, x)
     rez = zero(x)
-    c_ϕ = taylor(d.ϕ, x, d.d, typeof(x))
+    c_ϕ = taylor(d.ϕ, x, d.d)
     c_ϕ[end] = max(c_ϕ[end], 0)
     for k in 0:(d.d-1)
         if c_ϕ[k+1] != 0 # We need c_ϕ = 0 to dominate x = Inf
@@ -110,7 +110,7 @@ function Distributions.cdf(d::𝒲₋₁, x)
     return isnan(rez) ? one(x) : 1 - rez
     # return 1-rez
 end
-Distributions.logpdf(d::𝒲₋₁, x::Real) = log(max(0,taylor(x -> Distributions.cdf(d,x), x, 1, typeof(x))[end]))
+Distributions.logpdf(d::𝒲₋₁, x::Real) = log(max(0,taylor(x -> Distributions.cdf(d,x), x, 1)[end]))
 _quantile(d::𝒲₋₁, p) = Roots.find_zero(x -> (Distributions.cdf(d, x) - p), (0.0, Inf))
 Distributions.rand(rng::Distributions.AbstractRNG, d::𝒲₋₁) = _quantile(d,rand(rng))
 Base.minimum(::𝒲₋₁) = 0.0
