@@ -36,11 +36,12 @@ References:
 """
 struct 𝒲{TX, d}
     X::TX
-    function 𝒲(X::TX, d) where TX<:Distributions.UnivariateDistribution
+    function 𝒲(X::TX, ::Val{d}) where {TX<:Distributions.UnivariateDistribution, d}
         @assert minimum(X) ≥ 0 && maximum(X) ≤ Inf 
         @assert d ≥ 2 && isinteger(d) 
         return new{typeof(X), d}(X)
     end
+    𝒲(X, d::Int) = 𝒲(X, Val(d))
 end
 
 function (ϕ::𝒲{TX, d})(x) where {TX,d}
@@ -84,12 +85,13 @@ References:
 """
 struct 𝒲₋₁{Tϕ, d} <: Distributions.ContinuousUnivariateDistribution
     ϕ::Tϕ
-    function 𝒲₋₁(ϕ,d)
+    function 𝒲₋₁(ϕ, ::Val{d}) where d
         @assert ϕ(0.0) == 1.0
         @assert ϕ(float(Inf)) == 0.0
         @assert isinteger(d)
         return new{typeof(ϕ),d}(ϕ)
     end
+    𝒲₋₁(ϕ, d::Int) = 𝒲₋₁(ϕ, Val(d))
 end
 function Distributions.cdf(dist::𝒲₋₁{Tϕ, d}, x) where {Tϕ, d}
     rez, x_pow = zero(x), one(x)

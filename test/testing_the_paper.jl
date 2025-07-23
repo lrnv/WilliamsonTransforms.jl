@@ -127,5 +127,5 @@ end
 @testitem "testing fractional-dimensional williamson transformation" begin
     using Distributions
     ϕ(x) = exp(-x)
-    @test_throws AssertionError 𝒲₋₁(ϕ, 0.7)
+    @test_throws MethodError 𝒲₋₁(ϕ, 0.7)
 end
