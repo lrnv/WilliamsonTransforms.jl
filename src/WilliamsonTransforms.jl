@@ -94,6 +94,7 @@ struct 𝒲₋₁{Tϕ, d} <: Distributions.ContinuousUnivariateDistribution
     𝒲₋₁(ϕ, d::Int) = 𝒲₋₁(ϕ, Val(d))
 end
 function Distributions.cdf(dist::𝒲₋₁{Tϕ, d}, x) where {Tϕ, d}
+    x ≤ 0 && return zero(x)
     rez, x_pow = zero(x), one(x)
     c = taylor(dist.ϕ, x, Val(d-1))
     for k in 1:d
