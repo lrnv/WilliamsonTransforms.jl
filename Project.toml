@@ -1,6 +1,6 @@
 name = "WilliamsonTransforms"
 uuid = "48feb556-9bdd-43a2-8e10-96100ec25e22"
-version = "0.1.7"
+version = "0.2"
 authors = ["Oskar Laverny <oskar.laverny@gmail.com> and contributors"]
 
 [deps]
